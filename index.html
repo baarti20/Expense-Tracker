@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Expense Tracker</h1>
+            <button id="theme-toggle">Toggle Theme</button>
+        </header>
+
+        <main>
+            <div class="left-panel">
+                <section class="summary">
+                    <h2>Balance Summary</h2>
+                    <div class="summary-cards">
+                        <div class="balance-card">
+                            <h3>Total Balance</h3>
+                            <p id="total-balance">₹0.00</p>
+                        </div>
+                        <div class="income-card">
+                            <h3>Total Income</h3>
+                            <p id="total-income">₹0.00</p>
+                        </div>
+                        <div class="expense-card">
+                            <h3>Total Expenses</h3>
+                            <p id="total-expenses">₹0.00</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="add-transaction">
+                    <h2>Add New Transaction</h2>
+                    <form id="transaction-form">
+                        <input type="hidden" id="transaction-id">
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Title/Description</label>
+                            <input type="text" id="title" placeholder="Enter title..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="number" id="amount" placeholder="Enter amount..." required min="0.01" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" required>
+                                <option value="Food">Food</option>
+                                <option value="Travel">Travel</option>
+                                <option value="Rent">Rent</option>
+                                <option value="Shopping">Shopping</option>
+                                <option value="Bills">Bills</option>
+                                <option value="Health">Health</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group transaction-type">
+                            <label>Type</label>
+                            <input type="radio" id="income" name="type" value="income" checked>
+                            <label for="income">Income</label>
+                            <input type="radio" id="expense" name="type" value="expense">
+                            <label for="expense">Expense</label>
+                        </div>
+                        <button type="submit" class="btn">Add Transaction</button>
+                    </form>
+                </section>
+            </div>
+
+            <div class="right-panel">
+                <section class="transaction-list-section">
+                    <div class="transaction-header">
+                        <h2>Transactions</h2>
+                        <button id="clear-filters" class="btn">Clear Filters</button>
+                    </div>
+                    <div class="filters">
+                        <input type="text" id="search" placeholder="Search by title...">
+                        <select id="filter-category">
+                            <option value="all">All Categories</option>
+                            <option value="Food">Food</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Rent">Rent</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Bills">Bills</option>
+                            <option value="Health">Health</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <select id="filter-type">
+                            <option value="all">All Types</option>
+                            <option value="income">Income</option>
+                            <option value="expense">Expense</option>
+                        </select>
+                        <div class="date-filters">
+                            <div class="date-range-input">
+                                <input type="text" id="filter-date-range" placeholder="Select date range" readonly>
+                                <span class="calendar-icon">📅</span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul id="transaction-list"></ul>
+                </section>
+                <section class="charts">
+                    <h2>Income & Expense Chart</h2>
+                    <div id="expense-chart"></div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-color income"></div>
+                            <span>Income</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color expense"></div>
+                            <span>Expense</span>
+                        </div>
+                    </div>
+                </section>
+                <section class="data-management">
+                    <h2>Data Management</h2>
+                    <div class="data-management-buttons">
+                        <button id="export-csv" class="btn">Export to CSV</button>
+                        <input type="file" id="import-csv" accept=".csv" style="display: none;">
+                        <label for="import-csv" class="btn">Import from CSV</label>
+                        <button id="clear-data" class="btn btn-danger">Clear All Data</button>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
